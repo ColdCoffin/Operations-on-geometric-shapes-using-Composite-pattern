@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Composite
 {
-	class Program
+	public class Program
 	{
 		static void Main(string[] args)
 		{
+
 		}
 	}
 }
