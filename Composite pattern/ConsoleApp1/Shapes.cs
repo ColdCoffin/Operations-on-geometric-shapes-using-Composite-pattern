@@ -10,21 +10,18 @@ namespace Composite
 {
 	public class Shapes : IShape
 	{
+
+		public readonly string name;
 		private List<IShape> shapes = new List<IShape>();
 
-
-		public Shapes(List<IShape> shape)
+		public Shapes(string name)
 		{
-			this.shapes = shape;
-		}
-
-		public void Add(IShape shape)
-		{
-			shapes.Add(shape);
+			this.name = name;
 		}
 
 		public void Draw()
 		{
+			Console.WriteLine(name + ";");
 			foreach (var shape in shapes)
 			{
 				shape.Draw();
@@ -56,14 +53,30 @@ namespace Composite
 			}
 		}
 
-		public void Remove(int index)
-		{
-			shapes.RemoveAt(index);
-		}
-
 		public void Rotate(float degree)
 		{
-			throw new NotImplementedException();
+			foreach (var shape in shapes)
+			{
+				shape.Rotate(degree);
+			}
+		}
+
+		public void Select(IShape shape)
+		{
+			shapes.Add(shape);
+		}
+
+		public void Unselect(string name)
+		{
+			for (int i = 0; i < shapes.Count; i++)
+			{
+				if (name == shapes[i].GetName())
+					shapes.RemoveAt(i);
+			}
+		}
+		public string GetName()
+		{
+			return name;
 		}
 	}
 }

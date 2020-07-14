@@ -10,27 +10,27 @@ namespace Composite
 	public class Reactangle : IShape
 	{
 
-		string name = "Reactangle";
+		public readonly string name;
 		Point center;
 		int hight;
-		int wide;
+		int width;
+		float rotation;
 
-		public Reactangle(Point center, int hight, int wide)
+		public Reactangle(string name, Point center, int hight, int width)
 		{
+			if (hight <= 0 || width <= 0)
+				throw new ArgumentOutOfRangeException();
+
+			this.name = name;
 			this.center = center;
 			this.hight = hight;
-			this.wide = wide;
-		}
-
-		public void Add(IShape shape)
-		{
-			return;
+			this.width = width;
 		}
 
 		public void Draw() 
 		{
 
-			Console.WriteLine(name + " coordinates; center = " + center.ToString() + ", hight = " + hight + ", wide = " + wide);
+			Console.WriteLine(name + " coordinates; center = " + center.ToString() + ", hight = " + hight + ", wide = " + width + ", Rotation = " + rotation);
 
 		}
 
@@ -49,14 +49,22 @@ namespace Composite
 			center.Y += offset;
 		}
 
-		public void Remove(int index)
+		public void Rotate(float degree)
+		{
+			rotation += degree;
+		}
+		public void Select(IShape shape)
 		{
 			return;
 		}
 
-		public void Rotate(float degree)
+		public void Unselect(string name)
 		{
-			throw new NotImplementedException();
+			return;
+		}
+		public string GetName()
+		{
+			return name;
 		}
 
 	}

@@ -1,48 +1,70 @@
 ﻿using Composite;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace Composite
 {
-	class Elipse : IShape
+	public class Elipse : IShape
 	{
+		string name;
+		Point center;
+		int MajorAxes;
+		int MinorAxes;
+		float rotation;
 
-		public void Add(IShape shape)
+		public Elipse(string name, Point center, int MajorAxes, int MinorAxes)
 		{
-			throw new NotImplementedException();
-		}
+			if (MajorAxes <= 0 || MinorAxes <= 0)
+				throw new ArgumentOutOfRangeException();
 
+			this.name = name;
+			this.center = center;
+			this.MajorAxes = MajorAxes;
+			this.MinorAxes = MinorAxes;
+
+		}
 		public void Draw()
 		{
-			throw new NotImplementedException();
+			Console.WriteLine(name + " coordinates; center = " + center.ToString() + ", MajorAxes = " + MajorAxes + ", MinorAxes = " + MinorAxes + ", Rotation = " + rotation);
 		}
 
 		public IShape GetChild(int index)
 		{
-			throw new NotImplementedException();
+			return null;
 		}
 
 		public void MoveHorizontal(int offset)
 		{
-			throw new NotImplementedException();
+			center.X += offset;
 		}
 
 		public void MoveVertical(int offset)
 		{
-			throw new NotImplementedException();
+			center.Y += offset;
 		}
 
-		public void Remove(int index)
-		{
-			throw new NotImplementedException();
-		}
 
 		public void Rotate(float degree)
 		{
-			throw new NotImplementedException();
+			rotation += degree;
+		}
+
+		public void Select(IShape shape)
+		{
+			return;
+		}
+
+		public void Unselect(string name)
+		{
+			return;
+		}
+		public string GetName()
+		{
+			return name;
 		}
 	}
 }
